@@ -1,7 +1,7 @@
 package com.fiap.factory;
 
-import com.fiap.dao.JogadorDAO;
-import com.fiap.dao.JogadorDAOImpl;
+import com.fiap.dao.FilmeDAO;
+import com.fiap.dao.FilmeDAOImpl;
 import com.fiap.singleton.ConexaoSingleton;
 
 import java.sql.Connection;
@@ -10,8 +10,8 @@ public class DAOFactory {
     private DAOFactory() {
     }
 
-    public static JogadorDAO criarJogadorDAO() {
+    public static FilmeDAO criarFilmeDAO() {
         Connection conexao = ConexaoSingleton.getInstancia().getConexao();
-        return new JogadorDAOImpl(conexao);
+        return new FilmeDAOImpl(conexao);
     }
 }

@@ -8,8 +8,8 @@ import java.sql.Statement;
 
 public class ConexaoSingleton {
     private static final String URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
-    private static final String USUARIO = "rm562573";
-    private static final String SENHA = "041106";
+    private static final String USUARIO = "rm565710";
+    private static final String SENHA = "090906";
 
     private static ConexaoSingleton instancia;
     private final Connection conexao;
@@ -37,17 +37,17 @@ public class ConexaoSingleton {
 
     private void garantirEstrutura() throws SQLException {
         try (Statement st = conexao.createStatement()) {
-            if (!existe(st, "USER_TABLES", "TABLE_NAME", "JOGADOR")) {
+            if (!existe(st, "USER_TABLES", "TABLE_NAME", "FILME")) {
                 st.executeUpdate(
-                        "CREATE TABLE JOGADOR (" +
+                        "CREATE TABLE FILME (" +
                                 "ID NUMBER PRIMARY KEY, " +
-                                "NOME VARCHAR2(100) NOT NULL, " +
-                                "POSICAO VARCHAR2(50) NOT NULL, " +
-                                "NUMERO NUMBER(3) NOT NULL, " +
-                                "CLUBE VARCHAR2(80) NOT NULL)");
+                                "TITULO VARCHAR2(150) NOT NULL, " +
+                                "GENERO VARCHAR2(50) NOT NULL, " +
+                                "DURACAO NUMBER(3) NOT NULL, " +
+                                "DIRETOR VARCHAR2(100) NOT NULL)");
             }
-            if (!existe(st, "USER_SEQUENCES", "SEQUENCE_NAME", "SEQ_JOGADOR")) {
-                st.executeUpdate("CREATE SEQUENCE SEQ_JOGADOR START WITH 1 INCREMENT BY 1");
+            if (!existe(st, "USER_SEQUENCES", "SEQUENCE_NAME", "SEQ_FILME")) {
+                st.executeUpdate("CREATE SEQUENCE SEQ_FILME START WITH 1 INCREMENT BY 1");
             }
         }
     }
